@@ -1,0 +1,16 @@
+Fazer um software em Delphi com as seguintes características:
+
+1. Deve ter na interface um componente TCheckListBox chamado ChkLstFrutas com
+   pelo menos 20 frutas listadas na propriedade Items;
+
+2. Deve ter na interface um componente TListBox chamdo LstBxFrutasEscolhidas;
+
+3. No evento click do ChkLstFrutas deve:
+	- Limpar todos os itens do LstBxFrutasEscolhidas
+	- Adicionar a ele todos os ítens selecionados em ChkLstFrutas
+
+4. Usar o evento OnKeyPress do LstBxFrutasEscolhidas. Escrever rotina para mover
+   o item uma posição acima se detectar que foi precionado a tecla 'c' ou 'C';
+
+5. Usar o evento OnKeyPress do LstBxFrutasEscolhidas. Escrever rotina para mover
+   o item uma posição abaixo se detectar que foi precionado a tecla 'b' ou 'B';
