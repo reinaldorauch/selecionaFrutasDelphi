@@ -16,6 +16,8 @@ type
     procedure LstBxFrutasEscolhidasKeyPress(Sender: TObject; var Key: Char);
     procedure downSelected;
     procedure upSelected;
+    procedure AddToSelectedList(Item: String);
+    procedure RemoveFromSelectedList(Item: String);
   private
     { Private declarations }
   public
@@ -29,16 +31,34 @@ implementation
 
 {$R *.dfm}
 
+procedure TFmPrinc.AddToSelectedList(Item: String);
+begin
+  with LstBxFrutasEscolhidas do
+    if (Items.IndexOf(Item) = -1) then
+      Items.Add(Item);
+end;
+
 procedure TFmPrinc.ChkLstFrutasClick(Sender: TObject);
 var
   I: Integer;
+  S: String;
+  C: Boolean;
 begin
-  LstBxFrutasEscolhidas.Items.Clear;
-
   with ChkLstFrutas do
-    for I := 0 to Items.Count - 1 do
-      if Checked[i] then
-        LstBxFrutasEscolhidas.Items.Add(Items[i]);
+  begin
+    C := Checked[ItemIndex];
+    S := Items[ItemIndex];
+  end;
+
+  with LstBxFrutasEscolhidas do
+  begin
+    I := Items.IndexOf(S);
+    if C AND (I = -1) then
+      Items.Add(S)
+    else
+      if I > -1 then
+        Items.Delete(I);
+  end;
 end;
 
 procedure TFmPrinc.downSelected;
@@ -63,6 +83,15 @@ begin
     'c','C': upSelected;
     'b','B': downSelected;
   end;
+end;
+
+procedure TFmPrinc.RemoveFromSelectedList(Item: String);
+var
+  I: Integer;
+begin
+  with LstBxFrutasEscolhidas do
+    if Items.IndexOf(Item) > -1 then
+      Items.Delete(Items.IndexOf(Item));
 end;
 
 procedure TFmPrinc.upSelected;
